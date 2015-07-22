@@ -6,7 +6,7 @@ PROJECT WEBTECHNOLOGIE 2 (NODE.JS)
 *       GEMAAKT DOOR:  Brent Stappaerts   
 
 *       VERDERE UITLEG OPDRACHT:
-        Score Level 1 core
+        Score Level 1 core:
             ○ Deel klanten
                 ■ Maak design
                 ■ Slicen design in semantisch correcte, responsive HTML
@@ -19,7 +19,7 @@ PROJECT WEBTECHNOLOGIE 2 (NODE.JS)
                 ■ Producten kunnen toevoegen (foto, titel, omschrijving, prijs)
                 ■ Binnengekomen bestellingen bekijken
                     
-        Score Level 2 status
+        Score Level 2 status:
             ○ Deel klanten
                 ■ Gemaakte bestelling bekijken
                 ■ Status van een bestelling bekijken (wachten op verzending, verzonden)
@@ -29,14 +29,14 @@ PROJECT WEBTECHNOLOGIE 2 (NODE.JS)
                 ■ Status van een bestelling bewerken
                 ■ Filteren van bestellingen op status
         
-        Score Level 3 categorieën
+        Score Level 3 categorieën:
             ○ Deel klanten
                 ■ Filteren van producten
             ○ Deel winkelbeheer
                 ■ Status van een bestelling bekijken en bewerken
                 ■ Filteren van bestellingen op status
         
-        Score Level 4 opties
+        Score Level 4 opties:
             ○ Deel klanten
                 ■ Opties bij een product kiezen
             ○ Deel winkelbeheer
