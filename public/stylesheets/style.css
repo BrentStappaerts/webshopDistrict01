@@ -41,13 +41,26 @@ li a:hover{
 
 
 }
+@media (max-width: 780px)  {
 
 .kolom {
     float: left;
-    margin: 10px;
     padding: 16px;
-    width: 32%;
+    width: 100%;
     height: 300px;
-    background-color: #eb7c46;
+
+} 
+ }
+
+ @media (min-width: 781px)  {
+
+.kolom {
+    float: left;
+    padding: 16px;
+    width: 33%;
+    height: 300px;
+    text-align: center;
+
 } 
 
+}

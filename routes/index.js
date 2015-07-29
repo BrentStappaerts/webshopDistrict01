@@ -5,10 +5,13 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-	/* GET Registration Page */
-	router.get('/signup', function(req, res){
-		res.render('register',{message: req.flash('message')});
-	});
+
+router.get('/signup', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+
+
 
 
 module.exports = router;
