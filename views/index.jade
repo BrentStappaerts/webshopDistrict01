@@ -1,5 +1,32 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
+block content 
+	#banner
+
+	ul
+			li 
+				a(href='/index.jade')#create-account Home
+			li 
+				a(href='/signup')#create-account Producten
+			li 
+				a(href='/signup')#create-account Over ons
+			li 
+				a(href='/signup')#create-account Contact
+	
+	#inhoud
+		
+			.kolom
+				h1 hallo
+				p district01 is een webdesign bedrijf.
+				img(src= '/images/laptop.jpg' width='200px')
+			.kolom
+				p district01 is een webdesign bedrijf.
+			.kolom
+				p district01 is een webdesign bedrijf.
+
+
+
+
+
+				
+
