@@ -12,6 +12,15 @@ router.get('/register', function(req, res) {
     res.render('register', { });
 });
 
+router.get('/producten', function(req, res) {
+    res.render('producten', { });
+});
+
+router.get('/contact', function(req, res) {
+    res.render('contact', { });
+});
+
+
 router.post('/register', function(req, res, next) {
     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
         if (err) {
@@ -32,6 +41,10 @@ router.post('/register', function(req, res, next) {
 
 router.get('/login', function(req, res) {
     res.render('login', { user : req.user });
+});
+
+router.get('/OverOns', function(req, res) {
+    res.render('OverOns', { user : req.user });
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res, next) {
