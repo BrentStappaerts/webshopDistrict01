@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var multer = require('multer');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -36,14 +37,33 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 
+app.use(multer({dest:'./public/images/',
+  rename: function(fieldname, filename){
+    return filename;
+  },
+  onFileUploadStart: function(file){
+    console.log(file.originalname + ' is starting ...');
+  },
+  onFileUploadComplete: function(file){
+    console.log(file.fieldname + ' uploaded to ' + file.path);
+    done = true;
+  }
+}));
+
+app.post("/api/photo", function(req, res){
+  if(done == true){
+    console.log(req.files);
+    res.redirect('/producten');
+  }
+});
+
 // passport config
 var Account = require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
-// mongoose
-mongoose.connect('mongodb://localhost/passport_local_mongoose_express4');
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
