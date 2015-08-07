@@ -20,6 +20,10 @@ router.get('/contact', function(req, res) {
     res.render('contact', { });
 });
 
+router.get('/overzicht', function(req, res){
+    res.render('overzichtproducten');
+});
+
 
 router.post('/register', function(req, res, next) {
     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {

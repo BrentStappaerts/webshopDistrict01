@@ -20,4 +20,17 @@ $(document).ready(function(){
 		});
 		return false;
 	});
+
+	socket.on("printProducts", function(products){
+		for(var i = 0; i < products.length; i++){
+			$("#product").prepend('<li>'+products[i].specificaties+'</li>');
+			$("#product").prepend('</br>');
+			$("#product").prepend('<li>'+products[i].foto+'</li>');
+			$("#product").prepend('</br>');
+			$("#product").prepend('<li>'+products[i].type+'</li>');
+			$("#product").prepend('</br>');
+			$("#product").prepend('<li>'+products[i].merk+'</li>');
+			$("#product").prepend('</br>');
+		}
+	});
 });

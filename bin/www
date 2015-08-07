@@ -77,6 +77,14 @@ io.on('connection', function(socket){
       console.log('b', b);
     });
   });
+
+  socket.on("producten", function(){
+    Spot.find().exec(function(err, b){
+      console.log('b', b);
+      socket.emit('printProducts', b);
+    });
+  });
+
 });
 
 /**
