@@ -1,0 +1,33 @@
+extends layout
+
+block content 
+  #banner
+
+  ul
+      li 
+        a(href='/')#create-account Home
+      li 
+        a(href='/producten')#create-account Producten
+      li 
+        a(href='/login')#create-account Inloggen
+      li 
+        a(href='/OverOns')#create-account Over ons
+      li 
+        a(href='/contact')#create-account Contact
+
+
+
+    p.lead Overzicht producten
+
+    <ul id="product"></ul>
+    
+
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+  script(type="text/javascript" src="../javascripts/index.js")
+  script(src="/socket.io/socket.io.js")
+  script.
+    var socket = io.connect('http://localhost:3000');
+
+    $(document).ready(function(){
+      socket.emit('producten');
+    });
