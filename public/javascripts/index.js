@@ -6,9 +6,9 @@ $(document).ready(function(){
 		var merk = $("#merk").val();
 		var type = $("#type").val();
 		var foto = "/images/" + ($("#foto").val()).replace('C:\\fakepath\\', '');
-		var specificaties = $("#specificaties").val();
+		var prijs = $("#prijs").val();
 
-		socket.emit("addSpot", {merk: merk, type: type, specificaties: specificaties, foto: foto, product: product});
+		socket.emit("addSpot", {merk: merk, type: type, prijs: prijs, foto: foto, product: product});
 		
 		$(this).ajaxSubmit({
 			error: function(xhr){
@@ -23,14 +23,11 @@ $(document).ready(function(){
 
 	socket.on("printProducts", function(products){
 		for(var i = 0; i < products.length; i++){
-			$("#product").prepend('<li>'+products[i].specificaties+'</li>');
-			$("#product").prepend('</br>');
-			$("#product").prepend('<li>'+products[i].foto+'</li>');
-			$("#product").prepend('</br>');
-			$("#product").prepend('<li>'+products[i].type+'</li>');
-			$("#product").prepend('</br>');
-			$("#product").prepend('<li>'+products[i].merk+'</li>');
-			$("#product").prepend('</br>');
+			$('#product').prepend('<li><div class="productdetail" data-user=""><h1>'+products[i].merk+'</h1><p>'+products[i].type+'</p><img src="'+products[i].foto+'"></img><p STYLE="font-size: 20px; color: red">'+"€ "+products[i].prijs+'</p></div></li>')
+		;
+
+
+
 		}
 	});
 });

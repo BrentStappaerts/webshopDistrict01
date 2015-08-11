@@ -14,6 +14,7 @@ body {
 }
 
 
+
 ul {
     float: left;
     width: 100%;
@@ -85,4 +86,70 @@ li a:hover{
 
 } 
 
+}
+ @media (min-width: 1000px)  {
+
+#product li{
+
+    width: 19%;
+    margin-left: 2px;
+    padding-top: 2px;
+    float: left;
+    text-align: center;
+    border: solid 2px #C0C0C0;
+
+}
+
+#product img{
+
+    width: 150px;
+    height: 100px;
+
+}
+}
+
+ @media (max-width: 1000px)  {
+
+#product li{
+
+    width: 96%;
+    margin-left: 2px;
+    padding-top: 2px;
+    text-align: center;
+
+}
+
+#product img{
+
+    width: 150px;
+    height: 100px;
+
+}
+
+ul {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+li a {
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    background-color: #eb7c46;
+    padding: 0.5em 0.6em;
+    border-right: 1px solid white;
+}
+
+li {
+    display: inline;
+}
+
+li a:hover{
+    background-color: blue;
+
+
+}
 }

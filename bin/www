@@ -46,7 +46,7 @@ var Spot = app.spot = restful.model('Spot', mongoose.Schema({
     type: String,
     required: true
   },
-  specificaties: {
+  prijs: {
     type: String,
     required: true
   },
@@ -73,7 +73,7 @@ io.on('connection', function(socket){
   });
 
   socket.on("addSpot", function(data){
-    Spot.create({merk: data.merk, type: data.type, specificaties: data.specificaties, foto: data.foto, product: data.product}, function(err, b){
+    Spot.create({merk: data.merk, type: data.type, prijs: data.prijs, foto: data.foto, product: data.product}, function(err, b){
       console.log('b', b);
     });
   });
