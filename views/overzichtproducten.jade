@@ -1,34 +1,43 @@
 extends layout
 
 block content 
-  #banner
+	div(id='banner')
 
-  ul
-      li 
-        a(href='/')#create-account Home
-      li 
-        a(href='/overzicht')#create-account Producten
-      li 
-        a(href='/login')#create-account Inloggen
-      li 
-        a(href='/OverOns')#create-account Over ons
-      li 
-        a(href='/contact')#create-account Contact
+	ul
+		li 
+			a(href='/')#create-account Home
+		if user
+			li 
+				a(href='/overzicht')#create-account Producten
+		li 
+			a(href='/OverOns')#create-account Over ons
+		li 
+			a(href='/contact')#create-account Contact
+		if !user
+			li 
+				a(href='/login')#create-account Inloggen
 
+			li
+				a(href='/signup')#create-account Registreren
+		else
+			li 
+				a(href='/signout')#create-account Uitloggen
+			li
+				p Welkom #{user.username} !
 
+	p(class='lead') Overzicht producten
+	
+	if user.admin == true
+		a(href="/addProduct") Voeg een product toe
 
-    p.lead Overzicht producten
+	ul(id='product')
 
-    <ul id="product"></ul>
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+	script(src="/javascripts/script.js")
+	script(src="/socket.io/socket.io.js")
+	script.
+		var socket = io.connect('http://localhost:3000');
 
-    
-
-  script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
-  script(type="text/javascript" src="../javascripts/index.js")
-  script(src="/socket.io/socket.io.js")
-  script.
-    var socket = io.connect('http://localhost:3000');
-
-    $(document).ready(function(){
-      socket.emit('producten');
-    });
+		$(document).ready(function(){
+			socket.emit('findProducts');
+		});

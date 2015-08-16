@@ -5,8 +5,10 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('webshopDistrict01:server');
+var debug = require('debug')('webshop:server');
 var http = require('http');
+var User = require('../models/user');
+var Product = require('../models/product');
 
 /**
  * Get port from environment and store in Express.
@@ -22,46 +24,7 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-/**
- * Models
- */
-var restful = require("node-restful");
-var mongoose = require("mongoose");
-
-mongoose.connect('mongodb://localhost/webshopDistrict01');
-
-var Spot = app.spot = restful.model('Spot', mongoose.Schema({
-  merk: {
-    type: String,
-    required: true
-  },
-  type: {
-    type: String,
-    required: true
-  },
-  prijs: {
-    type: String,
-    required: true
-  },
-  foto: {
-    type: String,
-    required: true
-  },
-  product: {
-    type: String,
-    required: true
-  }
-}, {collection: 'spot'})).methods(['get', 'post', 'put', 'delete']);
-
-/**
- * Sockets
+ * Create Socket connections.
  */
 
 var io = require('socket.io')(server);
@@ -72,20 +35,27 @@ io.on('connection', function(socket){
     console.log('user disconnected');
   });
 
-  socket.on("addSpot", function(data){
-    Spot.create({merk: data.merk, type: data.type, prijs: data.prijs, foto: data.foto, product: data.product}, function(err, b){
+  socket.on('addProduct', function(data){
+    Product.create({type: data.type, product: data.product, merk: data.merk, prijs: data.prijs, foto: data.foto}, function(err, b){
       console.log('b', b);
     });
   });
 
-  socket.on("producten", function(){
-    Spot.find().exec(function(err, b){
+  socket.on('findProducts', function(){
+    Product.find().exec(function(err, b){
       console.log('b', b);
       socket.emit('printProducts', b);
     });
   });
-
 });
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -145,4 +115,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  console.log('Server running on localhost:' + addr.port);
 }
