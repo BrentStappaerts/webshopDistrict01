@@ -1,0 +1,45 @@
+extends layout
+
+block content
+	div(id='banner')
+
+	ul
+		li 
+			a(href='/')#create-account Home
+		if user
+			li 
+				a(href='/overzicht')#create-account Producten
+		li 
+			a(href='/OverOns')#create-account Over ons
+		li 
+			a(href='/contact')#create-account Contact
+		if !user
+			li 
+				a(href='/login')#create-account Inloggen
+
+			li
+				a(href='/signup')#create-account Registreren
+		else
+			li 
+				a(href='/signout')#create-account Uitloggen
+			li
+				p Welkom #{user.username} !
+
+	div(class='container')
+		h1 Registreren
+		p(class='lead') Dit kan snel en eenvoudig ..
+		br
+		form(action='/signup', name='signupForm', method='POST', style='max-width: 300px')
+			div(class='form-group')
+				input(class='form-control', type='email', name='username', id='username', placeholder='Username')
+			div(class='form-group')
+				input(class='form-control', type='password', name='password', id='password', placeholder='Password')
+			input(class='btn btn-default', type='submit', value='Sign up')
+			&nbsp;
+			a(href="/login") Ik heb al een account.
+		br
+		h4 Info
+
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+	script(src="/javascripts/script.js")
+	script(src="/socket.io/socket.io.js")
