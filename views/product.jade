@@ -1,4 +1,4 @@
-extends layout
+extends layout2
 
 block content 
 	div(id='banner')
@@ -27,12 +27,10 @@ block content
 
 		
 
-	p(class='lead') Overzicht producten
+	p(class='lead') Product detail
 	
-	if user.admin == true
-		a(href="/addProduct") Voeg een product toe
 
-	ul(id='product')
+	ul(id='productdetail')
 
 	script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
 	script(src="/javascripts/script.js")

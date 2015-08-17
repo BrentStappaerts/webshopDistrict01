@@ -44,6 +44,10 @@ module.exports = function(passport){
 		res.render('overzichtProducten', {title: 'Producten | District01', user: req.user});
 	});
 
+	router.get('/product', isAuthenticated, function(req, res){
+		res.render('product', {title: 'Product detail | District01', user: req.user});
+	});
+
 	router.get('/addProduct', isAuthenticated, function(req, res){
 		res.render('voegToeProducten', {title: 'Voeg product toe | District01', user: req.user});
 	});

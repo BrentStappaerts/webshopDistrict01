@@ -23,7 +23,8 @@ $(document).ready(function(){
 
 	socket.on("printProducts", function(products){
 		for(var i = 0; i < products.length; i++){
-			$('#product').prepend('<li><div class="productdetail" data-user=""><h1>'+products[i].merk+'</h1><p>'+products[i].type+'</p><img src="'+products[i].foto+'"></img><p STYLE="font-size: 20px; color: red">'+"€ "+products[i].prijs+'</p></div></li>');
+			$('#product').prepend('<li><div class="productdetail" data-user=""><h1>'+products[i].merk+'</h1><p>'+products[i].type+'</p><img src="'+products[i].foto+'"></img><p STYLE="font-size: 20px; color: red">'+"€ "+products[i].prijs+'</p><a href="/product?id='+products[i]._id+'">Meer info</a></div></li>'); 
+			$('#productdetail').prepend('<li><div class="productdetail" data-user=""><img src="'+products[i].foto+'"></img><div id="details"><h1>'+products[i].merk+'</h1><p>'+products[i].type+'</p><p STYLE="font-size: 20px; color: red">'+"€ "+products[i].prijs+'</p></div></div></li>'); 
 		}
 	});
 });
