@@ -11,7 +11,11 @@ body {
     background-repeat: no-repeat;
 }
 
-
+#welkom{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
 
 
 ul {
@@ -23,8 +27,9 @@ ul {
 }
 
 li a {
+    text-align: center;
     float: left;
-    width: 12em;
+    width: 20em;
     text-decoration: none;
     color: white;
     background-color: #eb7c46;
@@ -37,10 +42,21 @@ li {
 }
 
 li a:hover{
-	background-color: blue;
-
+	background-color: #F45B0E;
+    text-align: center;
+    color: white;
+    text-decoration: none;
 
 }
+
+#meerInfo{
+
+    float: left;
+    width: 100%;
+
+}
+
+
 
 #inhoud a {
     color: black;
@@ -73,6 +89,9 @@ li a:hover{
     width: 33%;
     height: 300px;
     text-align: center;
+    background-color: #FCD0B9;
+    margin-right: 5px;
+
 
 } 
 
@@ -105,6 +124,19 @@ li a:hover{
     height: 100px;
 
 }
+
+li #nav{
+    text-align: center;
+    float: left;
+    width: 30em;
+    height:  2.4em;
+    text-decoration: none;
+    color: white;
+    background-color: #eb7c46;
+    padding: 0.5em 0.6em;
+    border-right: 1px solid white;
+}
+
 }
 
  @media (max-width: 1000px)  {

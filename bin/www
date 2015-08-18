@@ -41,13 +41,29 @@ io.on('connection', function(socket){
     });
   });
 
-  socket.on('findProducts', function(){
+    socket.on('addBestelling', function(data){
+    Bestelling.create({aantal: data.aantal, voornaam: data.voornaam, achternaam: data.achternaam, adres: data.adres, foto: data.foto}, function(err, b){
+      console.log('b', b);
+    });
+  });
+
+
+  socket.on('findProducts', function(data){
     Product.find().exec(function(err, b){
       console.log('b', b);
       socket.emit('printProducts', b);
     });
   });
+
+  socket.on('findProductdetail', function(data){
+    Product.find({merk: data.merk}).exec(function(err, b){
+      console.log('b', b);
+      socket.emit('detail', b);
+    });
+  });
+
 });
+
 
 /**
  * Listen on provided port, on all network interfaces.
