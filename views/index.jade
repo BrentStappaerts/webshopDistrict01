@@ -5,43 +5,48 @@ block content
 	
 	ul
 		li 
-			a(href='/')#create-account Home
+			a(href='/') Home
 		if user
 			li 
-				a(href='/overzicht')#create-account Producten
+				a(href='/overzicht') Producten
 		li 
-			a(href='/OverOns')#create-account Over ons
+			a(href='/OverOns') Over ons
 		li 
-			a(href='/contact')#create-account Contact
+			a(href='/contact') Contact
 		if !user
 			li 
-				a(href='/login')#create-account Inloggen
+				a(href='/login') Inloggen
+			li 
+				<div id="nav"></div>
 
-			li
-				a(href='/signup')#create-account Registreren
 		else
 			li 
-				a(href='/signout')#create-account Uitloggen
-			li
-				p #{user.username} 
+				a(href='/signout') Uitloggen
+			
+	div(id="inhoud")			
 
-	div(id='inhoud')
+	if user
+		p(div id="welkom") Welkom #{user.username}, geniet van ons ruim assortiment.
 		
-		a(href='/OverOns')
-			.kolom
-				h1 WELKOM
-				img(src= '/images/logo.png' width='200px')
-				p District01 is uw technologische partner in alles Drupal, Umbraco en Nieuwe Media. Wij zijn een Kontich (Antwerpen) gebaseerde digitale bedrijf, dat werk van hoge kwaliteit produceert.
-		a(href='/producten')		
-			.kolom
-				h1 PRODUCTEN
-				img(src= '/images/producten.png' width='200px')
-				p Vind hier al uw IT Producten.
-		a(href='/contact')
-			.kolom
-				h1 CONTACT
-				img(src= '/images/contact.png' width='200px')
-				p district01 is een webdesign bedrijf.
+		
+
+	a(href='/OverOns')
+		.kolom
+			h1 WELKOM
+			img(src= '/images/logo.png' width='200px')
+			p District01 is uw technologische partner in alles Drupal, Umbraco en Nieuwe Media. Wij zijn een Kontich (Antwerpen) gebaseerde digitale bedrijf, dat werk van hoge kwaliteit produceert.
+	a(href='/login')		
+		.kolom
+			h1 INLOGGEN
+			img(src= '/images/producten.png' width='200px')
+			p Geniet van onze makkelijke aankoopdienst.
+	a(href='/contact')
+		.kolom
+			h1 CONTACT
+			img(src= '/images/contact.png' width='200px')
+			p district01 is een webdesign bedrijf.
+
+
 
 	script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
 	script(src="/javascripts/script.js")

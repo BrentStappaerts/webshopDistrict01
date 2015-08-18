@@ -1,29 +1,30 @@
 extends layout
 
-block content 
+block content
 	div(id='banner')
-
+	
 	ul
 		li 
-			a(href='/')#create-account Home
+			a(href='/') Home
 		if user
 			li 
-				a(href='/overzicht')#create-account Producten
+				a(href='/overzicht') Producten
 		li 
-			a(href='/OverOns')#create-account Over ons
+			a(href='/OverOns') Over ons
 		li 
-			a(href='/contact')#create-account Contact
+			a(href='/contact') Contact
 		if !user
 			li 
-				a(href='/login')#create-account Inloggen
+				a(href='/login') Inloggen
+			li 
+				<div id="nav"></div>
 
-			li
-				a(href='/signup')#create-account Registreren
 		else
 			li 
-				a(href='/signout')#create-account Uitloggen
+				a(href='/signout') Uitloggen
 			li
-				p Welkom #{user.username} !
+				p #{user.username} 
+
 
 	div(class='inhoud')
 		div(class='ons')

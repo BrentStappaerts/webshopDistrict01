@@ -21,10 +21,35 @@ $(document).ready(function(){
 		return false;
 	});
 
+
+	$("#bestel").on("submit", function(){
+		var aantal = $("#aantal").val();
+		var voornaam = $("#voornaam").val();
+		var achternaam = $("#achternaam").val();
+		var adres = $("#adres").val();
+
+		socket.emit("addBestelling", {aantal: aantal, voornaam: voornaam, achternaam: achternaam, adres: adres});
+		
+		$(this).ajaxSubmit({
+			error: function(xhr){
+				status('Error: ' + xhr.status);
+			},
+			success: function(response){
+				console.log(response);
+			}
+		});
+		return false;
+	});
+
 	socket.on("printProducts", function(products){
 		for(var i = 0; i < products.length; i++){
-			$('#product').prepend('<li><div class="productdetail" data-user=""><h1>'+products[i].merk+'</h1><p>'+products[i].type+'</p><img src="'+products[i].foto+'"></img><p STYLE="font-size: 20px; color: red">'+"€ "+products[i].prijs+'</p><a href="/product?id='+products[i]._id+'">Meer info</a></div></li>'); 
-			$('#productdetail').prepend('<li><div class="productdetail" data-user=""><img src="'+products[i].foto+'"></img><div id="details"><h1>'+products[i].merk+'</h1><p>'+products[i].type+'</p><p STYLE="font-size: 20px; color: red">'+"€ "+products[i].prijs+'</p></div></div></li>'); 
+			$('#product').prepend('<li><div class="product" data-user=""><h1>'+products[i].merk+'</h1><p>'+products[i].type+'</p><img src="'+products[i].foto+'"></img><p STYLE="font-size: 20px; color: red">'+"€ "+products[i].prijs+'</p><a id="meerInfo" href="/product?id='+products[i]._id+'">Meer info</a></div></li>'); 
+			
 		}
 	});
+
+	socket.on('detail', function(date){
+       		$('#productdetail').prepend('<li><p><strong class="red">'+date.merk+'</strong>');
+    });
+
 });
