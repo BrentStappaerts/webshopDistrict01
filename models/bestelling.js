@@ -7,11 +7,7 @@ module.exports = app.products = restful.model('Bestelling', mongoose.Schema({
 		type: String,
 		required: true
 	},
-	vornaam: {
-		type: String,
-		required: true
-	},
-	achternaam: {
+	naam: {
 		type: String,
 		required: true
 	},
@@ -19,4 +15,12 @@ module.exports = app.products = restful.model('Bestelling', mongoose.Schema({
 		type: String,
 		required: true
 	},
+	productid: {
+		type: String,
+		required: true
+	},
+	userid: {
+		type: String,
+		required: true
+	}
 }));

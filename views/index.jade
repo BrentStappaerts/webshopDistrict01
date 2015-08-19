@@ -9,24 +9,33 @@ block content
 		if user
 			li 
 				a(href='/overzicht') Producten
+			li
+				a(href='/bestellingen') Mijn bestellingen
+
+			if user.admin
+				li
+					a(href='/bestellingen') Bestellingen
+
+
 		li 
 			a(href='/OverOns') Over ons
 		li 
 			a(href='/contact') Contact
+
 		if !user
 			li 
 				a(href='/login') Inloggen
-			li 
-				<div id="nav"></div>
 
 		else
 			li 
 				a(href='/signout') Uitloggen
+
+
 			
 	div(id="inhoud")			
 
 	if user
-		p(div id="welkom") Welkom #{user.username}, geniet van ons ruim assortiment.
+		p(div id="welkom") Welkom #{user.firstname}, geniet van ons ruim assortiment.
 		
 		
 

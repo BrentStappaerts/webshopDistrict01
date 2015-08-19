@@ -28,11 +28,10 @@ block content
 		
 
 	p(class='lead') Product detail
-	
 
 	ul(id='productdetail')
 
-	form(id="bestel" enctype="multipart/form-data" action="/api/photo" method="post")
+	form(id="bestel" method="post")
 			label Aantal
 			select(id="aantal" name="aantal" class="form-control")
 				option(value="") Kies een aantal
@@ -41,12 +40,6 @@ block content
 				option(value="3") 3
 				option(value="4") 4
 				option(value="5") 5
-			label Voornaam
-			input(type="text" id="voornaam" name="voornaam" class="form-control" required)
-			label Achternaam
-			input(type="text" id="achternaam" name="achternam" class="form-control" required)
-			label Adres
-			input(type="text" id="adres" name="adres" class="form-control" required)
 			br
 			button(type="submit" class="btn" id="addBtn") Product toevoegen
 
@@ -57,5 +50,17 @@ block content
 		var socket = io.connect('http://localhost:3000');
 
 		$(document).ready(function(){
-			socket.emit('findProductdetail');
+			var id = location.search.split('id=')[1];
+			socket.emit('findProductdetail', {product: id});
+
+			$("#addBtn").on("click", function(e){
+				var aantal = $("#aantal").val();
+				var userid = "#{user._id}";
+				var naam = "#{user.firstname} #{user.lastname}";
+				var adres = "#{user.address}";
+		
+				socket.emit("addBestelling", {aantal: aantal, naam: naam, adres: adres, productid: id, userid: userid});
+				window.location.href='/bestellingen';
+				e.preventDefault();
+			});
 		});

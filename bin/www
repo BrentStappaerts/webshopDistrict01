@@ -9,6 +9,7 @@ var debug = require('debug')('webshop:server');
 var http = require('http');
 var User = require('../models/user');
 var Product = require('../models/product');
+var Bestelling = require('../models/bestelling');
 
 /**
  * Get port from environment and store in Express.
@@ -41,12 +42,6 @@ io.on('connection', function(socket){
     });
   });
 
-    socket.on('addBestelling', function(data){
-    Bestelling.create({aantal: data.aantal, voornaam: data.voornaam, achternaam: data.achternaam, adres: data.adres, foto: data.foto}, function(err, b){
-      console.log('b', b);
-    });
-  });
-
 
   socket.on('findProducts', function(data){
     Product.find().exec(function(err, b){
@@ -56,9 +51,22 @@ io.on('connection', function(socket){
   });
 
   socket.on('findProductdetail', function(data){
-    Product.find({merk: data.merk}).exec(function(err, b){
+    Product.find({_id: data.product}).exec(function(err, b){
       console.log('b', b);
       socket.emit('detail', b);
+    });
+  });
+
+  socket.on('addBestelling', function(data){
+    Bestelling.create({productid: data.productid, userid: data.userid, aantal: data.aantal, naam: data.naam, adres: data.adres}, function(err, b){
+      console.log('b', b);
+    });
+  });
+
+  socket.on('findOrder', function(data){
+    Bestelling.find({userid: data.user}).exec(function(err, b){
+      console.log('b', b);
+      socket.emit('printOrders', b);
     });
   });
 
