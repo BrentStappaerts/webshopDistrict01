@@ -1,0 +1,43 @@
+extends layout
+
+block content 
+	div(id='banner')
+
+	ul
+		li 
+			a(href='/')#create-account Home
+		if user
+			li 
+				a(href='/overzicht')#create-account Producten
+		li 
+			a(href='/OverOns')#create-account Over ons
+		li 
+			a(href='/contact')#create-account Contact
+		if !user
+			li 
+				a(href='/login')#create-account Inloggen
+
+			li
+				a(href='/signup')#create-account Registreren
+		else
+			li 
+				a(href='/signout')#create-account Uitloggen
+			li
+				p Welkom #{user.username} !
+
+
+
+	p.lead Uw bestelde producten:
+	ul(id="bestelling")
+
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+	script(src="/javascripts/script.js")
+	script(src="/socket.io/socket.io.js")
+	script.
+		var socket = io.connect('http://localhost:3000');
+
+		$(document).ready(function(){
+			var id = "#{user._id}";
+
+			socket.emit("findOrder", {user: id});
+		});

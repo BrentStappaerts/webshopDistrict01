@@ -60,5 +60,9 @@ module.exports = function(passport){
 		res.render('overOns', {title: 'Over ons | District01', user:req.user});
 	});
 
+	router.get('/bestellingen', isAuthenticated, function(req, res){
+		res.render('bestellingen', {title: 'Bestellingen | District01', user:req.user});
+	});
+
 	return router;
 }

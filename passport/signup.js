@@ -20,6 +20,9 @@ module.exports = function(passport){
 					var newUser = new User();
 					newUser.username = username;
 					newUser.password = createHash(password);
+					newUser.firstname = req.param('firstname');
+					newUser.lastname = req.param('lastname');
+					newUser.address = req.param('address');
 
 					newUser.save(function(err){
 						if(err){
