@@ -9,23 +9,47 @@ block content
 		if user
 			li 
 				a(href='/overzicht') Producten
+
+				if !user.admin
+					li
+						a(href='/MijnBestellingen') Mijn bestellingen
+
+				if user.admin
+					li
+						a(href='/bestellingen') Bestellingen
+
+
 		li 
 			a(href='/OverOns') Over ons
 		li 
 			a(href='/contact') Contact
+
 		if !user
 			li 
 				a(href='/login') Inloggen
-			li 
-				<div id="nav"></div>
+			li
+				a(href='signup') Registreren
+			li
+				<div id="opnav"></div>
 
 		else
 			li 
 				a(href='/signout') Uitloggen
-			li
-				p #{user.username} 
 
-	p(class='lead') Contact
+		if user
+			li
+				<div id="opnav"> Ingelogd als #{user.firstname}</div>
+
+	div(class='inhoud')
+
+		.ons
+			h1 Contacteer ons
+			br
+			p(class='lead') Voor al uw vragen en opmerkingen neem gerust contact met ons op en wij proberen u zo spoedig mogelijk te beantwoorden.
+			br
+			p(class='lead') info@district01.com
+		.ons
+			img(src="/images/about.png", width='80%')
 
 	script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
 	script(src="../javascripts/script.js")

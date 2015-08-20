@@ -11,11 +11,24 @@ body {
     background-repeat: no-repeat;
 }
 
-#welkom{
-    margin-top: 10px;
-    font-size: 20px;
-    font-weight: bold;
+
+
+#opnav{
+    background-color: #eb7c46;
+    width: 100%;
+    height: 2.4em;
+    color: white;
+    padding: 0.5em 0.6em;
+    text-align: center;
 }
+
+#MijnBestellingen a{
+    background-color: white;
+    color: black;
+
+
+}
+
 
 
 ul {
@@ -29,7 +42,7 @@ ul {
 li a {
     text-align: center;
     float: left;
-    width: 20em;
+    width: 15em;
     text-decoration: none;
     color: white;
     background-color: #eb7c46;
@@ -65,13 +78,6 @@ li a:hover{
 
 @media (max-width: 780px)  {
 
-.kolom {
-    float: left;
-    padding: 16px;
-    width: 100%;
-    height: 300px;
-
-} 
 .ons{
     float: left;
     padding: 16px;
@@ -83,17 +89,7 @@ li a:hover{
 
  @media (min-width: 781px)  {
 
-.kolom {
-    float: left;
-    padding: 16px;
-    width: 33%;
-    height: 300px;
-    text-align: center;
-    background-color: #FCD0B9;
-    margin-right: 5px;
 
-
-} 
 
 .ons {
     float: left;
@@ -121,7 +117,7 @@ li a:hover{
 #product img{
 
     width: 150px;
-    height: 100px;
+    height: 150px;
 
 }
 
@@ -136,6 +132,18 @@ li #nav{
     padding: 0.5em 0.6em;
     border-right: 1px solid white;
 }
+
+.kolom {
+    float: left;
+    padding: 16px;
+    width: 33%;
+    height: 300px;
+    text-align: center;
+    background-color: #FCD0B9;
+    margin-right: 5px;
+
+
+} 
 
 }
 
@@ -153,7 +161,7 @@ li #nav{
 #product img{
 
     width: 150px;
-    height: 100px;
+    height: 150px;
 
 }
 

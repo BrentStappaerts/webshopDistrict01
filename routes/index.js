@@ -64,5 +64,9 @@ module.exports = function(passport){
 		res.render('bestellingen', {title: 'Bestellingen | District01', user:req.user});
 	});
 
+	router.get('/MijnBestellingen', isAuthenticated, function(req, res){
+		res.render('MijnBestellingen', {title: 'Bestellingen | District01', user:req.user});
+	});
+
 	return router;
 }
