@@ -1,0 +1,58 @@
+extends layout
+
+block content 
+	div(id='banner')
+
+	ul
+		li 
+			a(href='/') Home
+		if user
+			li 
+				a(href='/overzicht') Producten
+
+				if !user.admin
+					li
+						a(href='/MijnBestellingen') Mijn bestellingen
+
+				if user.admin
+					li
+						a(href='/bestellingen') Bestellingen
+
+
+		li 
+			a(href='/OverOns') Over ons
+		li 
+			a(href='/contact') Contact
+
+		if !user
+			li 
+				a(href='/login') Inloggen
+			li
+				a(href='signup') Registreren
+			li
+				<div id="opnav"></div>
+
+		else
+			li 
+				a(href='/signout') Uitloggen
+
+		if user
+			li
+				<div id="opnav"> Ingelogd als #{user.firstname}</div>
+
+
+
+	p.lead Uw bestelde producten:
+	ul(id="bestelling")
+
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+	script(src="/javascripts/script.js")
+	script(src="/socket.io/socket.io.js")
+	script.
+		var socket = io.connect('http://localhost:3000');
+
+		$(document).ready(function(){
+			var id = "#{user._id}";
+
+			socket.emit("findOrder", {user: id});
+		});

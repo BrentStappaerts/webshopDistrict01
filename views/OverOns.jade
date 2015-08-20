@@ -9,33 +9,47 @@ block content
 		if user
 			li 
 				a(href='/overzicht') Producten
+
+				if !user.admin
+					li
+						a(href='/MijnBestellingen') Mijn bestellingen
+
+				if user.admin
+					li
+						a(href='/bestellingen') Bestellingen
+
+
 		li 
 			a(href='/OverOns') Over ons
 		li 
 			a(href='/contact') Contact
+
 		if !user
 			li 
 				a(href='/login') Inloggen
-			li 
-				<div id="nav"></div>
+			li
+				a(href='signup') Registreren
+			li
+				<div id="opnav"></div>
 
 		else
 			li 
 				a(href='/signout') Uitloggen
-			li
-				p #{user.username} 
 
+		if user
+			li
+				<div id="opnav"> Ingelogd als #{user.firstname}</div>
 
 	div(class='inhoud')
-		div(class='ons')
-			img(src="/images/about.png", width='100%')
 
-		div(class='ons')
+		.ons
 			h1 District01
 			br
 			p(class='lead') Opgericht in 2010, District01 is uw technologische partner in alles Drupal, Umbraco en Nieuwe Media. Wij zijn een Kontich (Antwerpen) gebaseerde digitale bedrijf, dat werk van hoge kwaliteit produceert.
 			br
 			p(class='lead') Door het handhaven van een gezonde werksfeer die gericht is op team-spirit, duurzaamheid, proactiviteit en ondernemerschap, hopen we de drive voor creativiteit en innovatie van onze medewerkers en partners te ondersteunen.
+		.ons
+			img(src="/images/about.png", width='80%')
 
 	script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
 	script(src="../javascripts/script.js")
