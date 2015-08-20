@@ -5,25 +5,40 @@ block content
 
 	ul
 		li 
-			a(href='/')#create-account Home
+			a(href='/') Home
 		if user
 			li 
-				a(href='/overzicht')#create-account Producten
+				a(href='/overzicht') Producten
+
+				if !user.admin
+					li
+						a(href='/MijnBestellingen') Mijn bestellingen
+
+				if user.admin
+					li
+						a(href='/bestellingen') Bestellingen
+
+
 		li 
-			a(href='/OverOns')#create-account Over ons
+			a(href='/OverOns') Over ons
 		li 
-			a(href='/contact')#create-account Contact
+			a(href='/contact') Contact
+
 		if !user
 			li 
-				a(href='/login')#create-account Inloggen
-
+				a(href='/login') Inloggen
 			li
-				a(href='/signup')#create-account Registreren
+				a(href='signup') Registreren
+			li
+				<div id="opnav"></div>
+
 		else
 			li 
-				a(href='/signout')#create-account Uitloggen
+				a(href='/signout') Uitloggen
+
+		if user
 			li
-				p Welkom #{user.username} !
+				<div id="opnav"> Ingelogd als #{user.firstname}</div>
 
 	div(class='container')
 		h1 Registreren
@@ -43,8 +58,7 @@ block content
 			input(class='btn btn-default', type='submit', value='Sign up')
 			&nbsp;
 			a(href="/login") Ik heb al een account.
-		br
-		h4 Info
+
 
 	script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
 	script(src="/javascripts/script.js")

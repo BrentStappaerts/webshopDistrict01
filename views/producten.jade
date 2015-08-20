@@ -1,0 +1,43 @@
+extends layout
+
+block content 
+  #banner
+
+  ul
+      li 
+        a(href='/')#create-account Home
+      li 
+        a(href='/producten')#create-account Producten
+      li 
+        a(href='/login')#create-account Inloggen
+      li 
+        a(href='/OverOns')#create-account Over ons
+      li 
+        a(href='/contact')#create-account Contact
+
+
+  .container
+        form(id="addForm" enctype="multipart/form-data" action="/api/photo" method="post")
+          label Product
+          select(id="product" name="product" class="form-control")
+            option(value="") Kies een product
+            option(value="computer") Computer
+            option(value="laptop") Laptop
+            option(value="tablet") Tablet
+            option(value="accessories") Accessories
+          label Merk
+          input(type="text" id="merk" name="merk" class="form-control" required)
+          label Type
+          input(type="text" id="type" name="type" class="form-control" required)
+          label Foto
+          input(type="file" id="foto" name="foto" class="form-control" required)
+          label Specificaties
+          textarea(type="text" id="specificaties" rows="5" name="specifi" class="form-control" required)
+          br
+          button(type="submit" class="btn" id="addBtn") Product toevoegen
+
+  
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+  script(type="text/javascript" src="../javascripts/index.js")
+  script(src="/socket.io/socket.io.js")
+  

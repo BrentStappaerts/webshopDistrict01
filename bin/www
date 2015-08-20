@@ -50,6 +50,13 @@ io.on('connection', function(socket){
     });
   });
 
+  socket.on('findBestellingen', function(data){
+    Bestelling.find().exec(function(err, b){
+      console.log('b', b);
+      socket.emit('printBestelling', b);
+    });
+  });
+
   socket.on('findProductdetail', function(data){
     Product.find({_id: data.product}).exec(function(err, b){
       console.log('b', b);

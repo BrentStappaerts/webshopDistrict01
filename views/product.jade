@@ -5,43 +5,65 @@ block content
 
 	ul
 		li 
-			a(href='/')#create-account Home
+			a(href='/') Home
 		if user
 			li 
-				a(href='/overzicht')#create-account Producten
+				a(href='/overzicht') Producten
+
+				if !user.admin
+					li
+						a(href='/MijnBestellingen') Mijn bestellingen
+
+				if user.admin
+					li
+						a(href='/bestellingen') Bestellingen
+
+
 		li 
-			a(href='/OverOns')#create-account Over ons
+			a(href='/OverOns') Over ons
 		li 
-			a(href='/contact')#create-account Contact
+			a(href='/contact') Contact
+
 		if !user
 			li 
-				a(href='/login')#create-account Inloggen
-
+				a(href='/login') Inloggen
 			li
-				a(href='/signup')#create-account Registreren
+				a(href='signup') Registreren
+			li
+				<div id="opnav"></div>
+
 		else
 			li 
-				a(href='/signout')#create-account Uitloggen
+				a(href='/signout') Uitloggen
+
+		if user
 			li
-				p Welkom #{user.username} !
+				<div id="opnav"> Ingelogd als #{user.firstname}</div>
 
 		
 
-	p(class='lead') Product detail
 
-	ul(id='productdetail')
+		div(class='inhoud')
 
-	form(id="bestel" method="post")
-			label Aantal
-			select(id="aantal" name="aantal" class="form-control")
-				option(value="") Kies een aantal
-				option(value="1") 1
-				option(value="2") 2
-				option(value="3") 3
-				option(value="4") 4
-				option(value="5") 5
-			br
-			button(type="submit" class="btn" id="addBtn") Product toevoegen
+		.ons
+			ul(id='productdetail')
+		.ons
+		
+			h1 Bestellen
+			p.lead #{user.firstname}
+			p.lead #{user.lastname}
+			p.lead #{user.address}
+			form(id="bestel" method="post")
+				label Aantal
+				select(id="aantal" name="aantal" class="form-control")
+					option(value="") Kies een aantal
+					option(value="1") 1
+					option(value="2") 2
+					option(value="3") 3
+					option(value="4") 4
+					option(value="5") 5
+				br
+				button(type="submit" class="btn" id="addBtn") Product bestellen
 
 	script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
 	script(src="/javascripts/script.js")
@@ -60,7 +82,7 @@ block content
 				var adres = "#{user.address}";
 		
 				socket.emit("addBestelling", {aantal: aantal, naam: naam, adres: adres, productid: id, userid: userid});
-				window.location.href='/bestellingen';
+				window.location.href='/MijnBestellingen';
 				e.preventDefault();
 			});
 		});
