@@ -9,25 +9,40 @@ block content
 		if user
 			li 
 				a(href='/overzicht') Producten
+
+				if !user.admin
+					li
+						a(href='/MijnBestellingen') Mijn bestellingen
+
+				if user.admin
+					li
+						a(href='/bestellingen') Bestellingen
+
+
 		li 
 			a(href='/OverOns') Over ons
 		li 
 			a(href='/contact') Contact
+
 		if !user
 			li 
 				a(href='/login') Inloggen
-			li 
-				<div id="nav"></div>
+			li
+				a(href='signup') Registreren
+			li
+				<div id="opnav"></div>
 
 		else
 			li 
 				a(href='/signout') Uitloggen
+
+		if user
 			li
-				p #{user.username} 
+				<div id="opnav"> Ingelogd als #{user.firstname}</div>
 
 	div(class='container')
 		h1 Inloggen
-		p(class='lead') Profiteer van ons ruime aanbod!
+		p.lead Profiteer van ons ruime aanbod!
 		br
 		form(action='/login', name='loginForm', method='POST', style='max-width: 300px')
 			div(class='form-group')
